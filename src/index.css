@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Set global font + handy heading utilities */
+@layer base {
+  html {
+    @apply font-inter;
+  }
+}
+
+@layer components {
+  .h1 { @apply text-3xl sm:text-4xl font-poppins font-bold tracking-tight; }
+  .h2 { @apply text-2xl sm:text-3xl font-poppins font-semibold tracking-tight; }
+  .h3 { @apply text-xl font-poppins font-semibold; }
+  .muted { @apply text-slate-600; }
+}

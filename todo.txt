@@ -1,0 +1,2 @@
+//problem:our filter works but not good enough in spots news component
+-we want to see only male premier ligue news, we dont want scottish
