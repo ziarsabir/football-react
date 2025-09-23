@@ -56,7 +56,7 @@ export default function SportsNews() {
             ? `&club=${encodeURIComponent(club)}`
             : "";
 
-        const url = `http://localhost:4000/api/news?source=${source}${topicQS}${clubQS}`;
+        const url = `https://football-backend-ish9.onrender.com/api/news?source=${source}${topicQS}${clubQS}`;
 
         const r = await fetch(url);
         const data = await r.json();
