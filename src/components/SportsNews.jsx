@@ -259,8 +259,7 @@ export default function SportsNews() {
       )}
 
       <p className="mt-6 text-xs text-slate-500">
-        Headlines & summaries © respective publishers. Click through to read
-        full articles.
+        This site aggregates RSS feeds for informational purposes only. All rights remain with the original publishers.
       </p>
     </section>
   );

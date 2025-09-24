@@ -52,9 +52,9 @@ export default function TeamDetails() {
       {/* Fixtures for this team */}
       <TeamFixtures />
 
-      {/* Transfers */}
+     {/* Transfers */}
       <div className="mt-10">
-        <h3 className="text-2xl font-bold mb-4">Transfers</h3>
+        <h3 className="h2 mb-4">Transfers</h3>
         <TeamTransfers summerTransfers={summerTransfers} />
       </div>
     </div>
