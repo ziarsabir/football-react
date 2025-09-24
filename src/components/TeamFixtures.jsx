@@ -56,8 +56,6 @@ const TeamFixtures = () => {
     if (!iso) return "TBD";
     const t = new Date(iso);
     return Number.isNaN(t.getTime()) ? "TBD" : t.toLocaleString();
-    // Alternative consistent format:
-    // return t.toLocaleString(undefined, { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
   };
 
   // Split & sort
@@ -87,9 +85,10 @@ const TeamFixtures = () => {
   }, [upcoming]);
 
   const cardClass = (f) => {
-    if (isFinished(f)) return "bg-emerald-50 border border-emerald-200"; // ✅ swapped from rose to emerald
-    if ((f?.fixture?.id ?? null) === nextUpcomingId) return "bg-green-50 border border-green-200";
-    return "bg-white border border-slate-200";
+    if (isFinished(f)) return "bg-emerald-50 border border-emerald-200"; // finished = subtle emerald
+    if ((f?.fixture?.id ?? null) === nextUpcomingId)
+      return "bg-blue-50 border border-blue-200"; // next upcoming = professional blue (was green)
+    return "bg-white border border-slate-200"; // other upcoming
   };
 
   const badgeText = (f) => {
@@ -157,7 +156,7 @@ const TeamFixtures = () => {
       {/* Upcoming */}
       {upcoming.length > 0 && (
         <section className="mb-8">
-          <h4 className="text-lg font-semibold mb-3">Upcoming</h4>
+          <h4 className="text-2xl sm:text-3xl font-bold mb-4">Upcoming Fixtures</h4>
           <FixtureGrid data={upcoming} />
         </section>
       )}
@@ -165,7 +164,7 @@ const TeamFixtures = () => {
       {/* Results */}
       {results.length > 0 && (
         <section>
-          <h4 className="text-lg font-semibold mb-3">Results</h4>
+          <h4 className="text-2xl sm:text-3xl font-bold mb-4">Results</h4>
           <FixtureGrid data={results} />
         </section>
       )}
@@ -173,4 +172,4 @@ const TeamFixtures = () => {
   );
 };
 
-export default TeamFixtures; 
+export default TeamFixtures;
