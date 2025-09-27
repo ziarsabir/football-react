@@ -1,13 +1,14 @@
+// pages/HomePage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import SportsNews from '../components/SportsNews.jsx'
-import Hero from '../components/Hero.jsx';
+import SportsNews from "../components/SportsNews.jsx";
+import Hero from "../components/Hero.jsx";
 
 export default function Home() {
   return (
     <div className="bg-gradient-to-b from-slate-50 to-slate-100">
-      
-      <Hero/>
+      <Hero />
+
       {/* Quick links */}
       <section className="container mx-auto px-4 pb-14">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -31,8 +32,10 @@ export default function Home() {
           ))}
         </div>
 
-        <SportsNews/> 
-        
+        {/* Scroll anchor to fix scroll offset for "Read Latest News" */}
+        <div id="news-anchor" className="pt-12 -mt-12" />
+
+        <SportsNews />
       </section>
     </div>
   );

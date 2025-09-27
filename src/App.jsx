@@ -1,6 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+// App.jsx
+import { Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop"; 
 import Home from "./pages/Home";
 import Standings from "./pages/Standings";
 import Fixtures from "./pages/Fixtures";
@@ -12,7 +14,7 @@ function App() {
   return (
     <>
       <NavBar />
-      {/* slate (not sleet) background; Inter is global from index.css */}
+      <ScrollToTop /> 
       <main className="min-h-screen bg-slate-50">
         <Routes>
           <Route path="/" element={<Home />} />

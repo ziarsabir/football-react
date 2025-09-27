@@ -98,7 +98,7 @@ export default function SportsNews() {
     it?.image || it?.thumbnail || it?.enclosure?.url || null;
 
   return (
-    <section className="container mx-auto px-4 py-6">
+     <section id="news" className="container mx-auto px-4 py-6">
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
         Latest Football News
       </h2>

@@ -6,7 +6,7 @@ export default function NavBar() {
   const [open, setOpen] = useState(false);
 
   const base =
-    "px-3 py-2 rounded-full text-sm font-medium transition hover:bg-white/10";
+    "px-4 py-2 rounded-full text-base font-semibold transition hover:bg-white/10";
   const active = ({ isActive }) =>
     isActive ? `${base} bg-white/15` : base;
 
@@ -32,7 +32,7 @@ export default function NavBar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden sm:flex items-center gap-1">
+          <ul className="hidden sm:flex items-center gap-2">
             <li><NavLink to="/" className={active} end>Home</NavLink></li>
             <li><NavLink to="/standings" className={active}>Standings</NavLink></li>
             <li><NavLink to="/fixtures" className={active}>Live Fixtures</NavLink></li>
@@ -62,18 +62,43 @@ export default function NavBar() {
       {/* Mobile Dropdown Menu */}
       {open && (
         <div className="sm:hidden border-t border-white/10 bg-blue-900/95 backdrop-blur">
-          <ul className="mx-auto max-w-6xl px-4 py-2">
+          <ul className="mx-auto max-w-6xl px-4 py-2 space-y-2">
             <li>
-              <NavLink to="/" end className="block rounded-md px-3 py-2 hover:bg-white/10" onClick={() => setOpen(false)}>Home</NavLink>
+              <NavLink
+                to="/"
+                end
+                className="block rounded-md px-4 py-2 text-base font-semibold hover:bg-white/10"
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/standings" className="block rounded-md px-3 py-2 hover:bg-white/10" onClick={() => setOpen(false)}>Standings</NavLink>
+              <NavLink
+                to="/standings"
+                className="block rounded-md px-4 py-2 text-base font-semibold hover:bg-white/10"
+                onClick={() => setOpen(false)}
+              >
+                Standings
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/fixtures" className="block rounded-md px-3 py-2 hover:bg-white/10" onClick={() => setOpen(false)}>Fixtures</NavLink>
+              <NavLink
+                to="/fixtures"
+                className="block rounded-md px-4 py-2 text-base font-semibold hover:bg-white/10"
+                onClick={() => setOpen(false)}
+              >
+                Fixtures
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/teams" className="block rounded-md px-3 py-2 hover:bg-white/10" onClick={() => setOpen(false)}>Teams</NavLink>
+              <NavLink
+                to="/teams"
+                className="block rounded-md px-4 py-2 text-base font-semibold hover:bg-white/10"
+                onClick={() => setOpen(false)}
+              >
+                Teams
+              </NavLink>
             </li>
           </ul>
         </div>

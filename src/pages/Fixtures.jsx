@@ -27,7 +27,7 @@ export default function Fixtures() {
     <div className="container mx-auto px-4 my-8">
       <h1 className="text-3xl font-bold mb-6 text-center">Live Fixtures</h1>
       {fixtures.length === 0 ? (
-        <p className="text-center text-slate-500">No fixtures found.</p>
+        <p className="text-center text-slate-500">Live updates – new fixtures added weekly.</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {fixtures.map((f, i) => (

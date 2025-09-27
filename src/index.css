@@ -6,6 +6,11 @@
 @layer base {
   html {
     @apply font-inter;
+    scroll-behavior: smooth;
+  }
+
+   body {
+    @apply bg-slate-50; /* <== This is the fix */
   }
 }
 

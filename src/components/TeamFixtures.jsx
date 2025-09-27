@@ -121,7 +121,6 @@ const TeamFixtures = () => {
 
   return (
     <div className="mt-8">
-      <h3 className="h2 mb-4">Fixtures</h3>
 
       {upcoming.length > 0 && (
         <section className="mb-8">
