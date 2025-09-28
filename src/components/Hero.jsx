@@ -28,7 +28,7 @@ function Hero() {
 
       {/* Content Box */}
       <div className="relative z-10 text-center px-6 md:px-8 max-w-2xl backdrop-blur-md bg-white/5 border border-white/10 rounded-xl p-6 shadow-xl -translate-y-20">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-4 animate-fadeInUp text-white leading-tight drop-shadow-md">
+        <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-white leading-tight drop-shadow-md">
           The Home of Premier League
         </h1>
 
