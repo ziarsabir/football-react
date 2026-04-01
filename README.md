@@ -1,111 +1,113 @@
-FOOTBALL STATS APP
+# Football Stats App
 
 A full-stack football platform that displays Premier League data including fixtures, standings, team stats, and curated football news.
 
-OVERVIEW
+## Overview
 
-This project combines a React frontend with a Node.js backend to deliver real-time football data and filtered news in one place.
+This project combines a React frontend with a Node.js backend to deliver real-time football data and filtered news in one place:
 
-The frontend consumes the API-Football service to display live football data such as fixtures, standings and team information.
+- Frontend consumes the API-Football service (fixtures, standings, team information).
+- Backend aggregates football news from multiple sources, converts XML data to JSON, and filters Premier League-related articles.
 
-The backend aggregates football news from multiple sources, converts XML data into JSON format, and filters content to focus specifically on Premier League-related articles.
+## Features
 
-FEATURES
+### Frontend (React)
 
-Frontend (React):
+- Live fixtures
+- League standings
+- Team information and statistics
+- Team fixtures and transfers
+- Clean, responsive UI with Tailwind CSS
+- Modular component-based architecture
 
-Displays live fixtures
-Shows league standings
-Provides detailed team information and statistics
-Displays team fixtures and transfers
-Clean and responsive UI built with Tailwind CSS
-Modular component-based architecture
+### Backend (Node.js)
 
-Backend (Node.js):
+- Fetches RSS feeds from BBC Sport, Sky Sports, and ESPN
+- Converts XML to JSON
+- Filters Premier League news
+- Exposes a custom `/api/news` endpoint for frontend consumption
 
-Fetches RSS feeds from BBC Sport, Sky Sports and ESPN
-Converts XML data into JSON for easier use in JavaScript
-Filters news articles to show only relevant Premier League content
-Provides a custom API endpoint for the frontend to consume
+## Tech stack
 
-TECH STACK
+### Frontend
 
-Frontend:
+- React (Vite)
+- JavaScript (ES6+)
+- Tailwind CSS
 
-React (built with Vite)
-JavaScript (ES6+)
-Tailwind CSS
+### Backend
 
-Backend:
+- Node.js
+- Express
+- node-fetch
+- xml2js
+- CORS
 
-Node.js
-Express
-node-fetch
-xml2js
-CORS
+### External services
 
-External API:
+- API-Football (`www.api-football.com`)
 
-www.api-football.com (used for fixtures, standings and team data)
+## Project structure
 
-PROJECT STRUCTURE
+### Frontend (`football-stats-app-client`)
 
-The project is split into two main parts:
+- `src/api` - API logic (`footballApi.js`)
+- `src/components` - reusable UI widgets (`Navbar`, `Fixtures`, `StandingsTable`, `TeamDetails`, etc.)
+- `src/pages` - page-level components (`Home`, `Fixtures`, `Standings`, `Teams`)
+- `App.jsx` - root component
 
-Frontend (football-stats-app-client):
+### Backend (`football-stats-backend`)
 
-src/api contains the API logic (footballApi.js)
-src/components contains reusable UI components such as Navbar, Fixtures, StandingsTable, TeamDetails, etc.
-src/pages contains page-level components such as Home, Fixtures, Standings and Teams
-App.jsx acts as the main root component
+- `server.js` - Express server, RSS fetching, XML parsing, filtering
 
-Backend (football-stats-backend):
+## Setup instructions
 
-server.js contains the Express server and API logic
-Handles RSS feed fetching, XML parsing and filtering
+1. Clone repository.
+2. Frontend:
+   - `cd football-stats-app-client`
+   - `npm install`
+   - `npm run dev`
+3. Backend:
+   - `cd football-stats-backend`
+   - `npm install`
+   - `node server.js`
 
-SETUP INSTRUCTIONS
+## Environment variables
 
-Clone the repository and navigate into the project folder.
-Frontend setup:
-Go into the football-stats-app-client folder
-Run npm install
-Run npm run dev to start the development server
-Backend setup:
-Go into the football-stats-backend folder
-Run npm install
-Run node server.js to start the backend server
+This project uses API-Football for live and historical football data. The frontend needs a valid API key to retrieve fixtures, standings, teams, and other football data. Without the key, data requests fail and the UI cannot show any matches or stats.
 
-ENVIRONMENT VARIABLES
+How to get your API key:
 
-Created a .env file in the frontend project and added my API-Football key:
+1. Go to https://www.api-football.com
+2. Sign up for a free account
+3. Subscribe to the free plan (or any paid plan for higher limits)
+4. Copy your API key from the dashboard
 
+Create `.env` in frontend:
+
+```env
 API_KEY=my_api_football_key
+```
 
-API ENDPOINTS
+## API endpoints
 
-Backend endpoint:
-GET /api/news
+- `GET /api/news` - returns filtered football news articles aggregated from multiple sources
 
-This endpoint returns filtered football news articles aggregated from multiple sources.
+## Future improvements
 
-FUTURE IMPROVEMENTS
+- Add SQL database for persistent storage
+- Add user authentication and saved favourites
+- Deploy full-stack app (Render/Vercel)
+- Add caching for API responses
+- Improve news filtering relevance
 
-Integrate an SQL database for persistent data storage
-Add user authentication and saved favourites
-Deploy the full-stack application (e.g. using Render or Vercel)
-Implement caching for API responses to improve performance
-Improve news filtering logic for better relevance
+## Learning goals
 
-LEARNING GOALS
+- Full-stack development practice
+- Third-party API integration
+- Backend data processing (XML → JSON)
+- Prepare for SQL integration and cloud deployment
 
-This project was built to:
+## Author
 
-Practice full-stack development
-Work with third-party APIs
-Understand backend data processing (XML to JSON)
-Prepare for SQL integration and cloud-based deployment
-
-AUTHOR
-
-Ziar Sabir
+- Ziar Sabir
