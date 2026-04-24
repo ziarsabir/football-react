@@ -7,6 +7,7 @@ function StatusChip({ status, elapsed }) {
   const color = live ? "bg-green-100 text-green-700"
     : finished ? "bg-slate-200 text-slate-700"
     : "bg-yellow-100 text-yellow-700";
+
   return (
     <span className={`inline-block text-xs px-2 py-1 rounded ${color}`}>
       {status}{elapsed ? ` (${elapsed}')` : ""}
@@ -22,6 +23,7 @@ export default function Fixtures() {
   useEffect(() => {
     fetchPremierLeagueLiveFixtures().then((data) => setFixtures(data.response || []));
   }, []);
+
 
   return (
     <div className="container mx-auto px-4 my-8">

@@ -32,25 +32,38 @@ const TeamFixtures = () => {
     const long = (f?.fixture?.status?.long ?? "").toLowerCase();
     return ["FT", "AET", "PEN"].includes(short) || long.includes("finished");
   };
+
+
   const isUpcoming = (f) => {
     const t = f?.fixture?.date ? new Date(f.fixture.date).getTime() : NaN;
     return Number.isFinite(t) && t > Date.now() && !isFinished(f);
   };
+
   const fmtDateTime = (iso) => {
     if (!iso) return "TBD";
     const t = new Date(iso);
     return Number.isNaN(t.getTime()) ? "TBD" : t.toLocaleString();
   };
 
+  //useMemo does NOT "pause" or "stop and wait"
+  //it runs fully, computes the value, returns it, and finishes. 
+  //it reuses the returned value on future renders unless teamFixtures changes 
   const results = useMemo(() => {
+    //step 1: filter 
     const arr = teamFixtures.filter(isFinished);
+    //step 2: sort AND return the final result once sorting is complete and sorted array becomes final result
+    // SORT mutates the array in place and returns the same array. 
+    // This is an INLINE version of the function 
+    // The returned value from use useMemo is the sorted fixtures list. 
     return arr.sort((a, b) => {
       const ad = a?.fixture?.date ? new Date(a.fixture.date).getTime() : -Infinity;
       const bd = b?.fixture?.date ? new Date(b.fixture.date).getTime() : -Infinity;
-      return bd - ad; // newest first
+      return bd - ad; //ONLY tells sort how to compare 2 items/does NOT return from useMemo()/comparison logic/ runs many times
     });
   }, [teamFixtures]);
 
+
+//
   const upcoming = useMemo(() => {
     const arr = teamFixtures.filter(isUpcoming);
     return arr.sort((a, b) => {

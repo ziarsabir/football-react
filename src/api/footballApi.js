@@ -11,8 +11,10 @@ const headers = {
 // .then is way of dealing with the response but await is a much cleaner way of doing so. 
 // Async type function is the only way to use the await key word - if you are RESOLVING a response with .then don't need 'async' keyword. 
 export const fetchStandings = async (leagueId = 39, season = 2025) => {
-const res = await fetch(`${BASE_URL}/standings?league=${leagueId}&season=${season}`, { headers });
-return res.json();
+  const res = await fetch(
+    `http://localhost:4000/api/saved-standings?league=${leagueId}&season=${season}`
+  );
+  return res.json();
 };
 
 export const fetchLiveFixtures = async () => {
@@ -25,6 +27,7 @@ export const fetchPremierLeagueLiveFixtures = async ( season = 2025, leagueId=39
 const res = await fetch(`${BASE_URL}/fixtures?live=all&league=${leagueId}&season=${season} `, { headers });
 return res.json();
 }
+
 export const fetchTeamDetails = async (teamId = 34) => {
 const res = await fetch(`${BASE_URL}/teams?id=${teamId}`, { headers });
 return res.json();

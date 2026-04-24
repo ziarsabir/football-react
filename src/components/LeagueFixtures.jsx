@@ -8,7 +8,6 @@ const LeagueFixtures = () => {
     fetchFixturesByLeague().then(data => setLeagueFixtures(data.response || []));
     }, []); 
     
-   
 
     if (leagueFixtures.length === 0) return <p>No live fixtures right now.</p>;
 

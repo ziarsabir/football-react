@@ -7,7 +7,7 @@ const StandingsTable = () => {
 
   useEffect(() => {
     fetchStandings().then((data) => {
-      const table = data.response?.[0]?.league?.standings?.[0] || [];
+      const table = data.items || [];
       setStandings(table);
     });
   }, []);
@@ -22,6 +22,7 @@ const StandingsTable = () => {
         : c === "D"
         ? "bg-amber-500"
         : "bg-rose-500";
+
     return (
       <div className="flex items-center gap-1 justify-end">
         {lastFive.map((c, i) => (
@@ -55,29 +56,29 @@ const StandingsTable = () => {
         </thead>
         <tbody className="divide-y divide-slate-100">
           {standings.map((row, idx) => {
-            const played = row?.all?.played ?? 0;
-            const win = row?.all?.win ?? 0;
-            const draw = row?.all?.draw ?? 0;
-            const lose = row?.all?.lose ?? 0;
-            const gf = row?.all?.goals?.for ?? 0;
-            const ga = row?.all?.goals?.against ?? 0;
-            const gd = row?.goalsDiff ?? (gf - ga);
+            const played = row.played ?? 0;
+            const win = row.win ?? 0;
+            const draw = row.draw ?? 0;
+            const lose = row.lose ?? 0;
+            const gf = row.goalsFor ?? 0;
+            const ga = row.goalsAgainst ?? 0;
+            const gd = row.goalsDiff ?? gf - ga;
 
             return (
               <tr
-                key={row.team.id}
+                key={row.teamId}
                 className={idx % 2 ? "bg-slate-50/50" : "bg-white"}
               >
                 <td className="py-2 px-4">{row.rank}</td>
                 <td className="py-2 px-4">
                   <div className="flex items-center gap-2">
-                    <img src={row.team.logo} alt="" className="w-6 h-6" />
+                    <img src={row.teamLogo} alt="" className="w-6 h-6" />
                     <span className="font-medium text-slate-800">
                       <Link
-                        to={`/teams/${row.team.id}`}
+                        to={`/teams/${row.teamId}`}
                         className="hover:underline"
                       >
-                        {row.team.name}
+                        {row.teamName}
                       </Link>
                     </span>
                   </div>
