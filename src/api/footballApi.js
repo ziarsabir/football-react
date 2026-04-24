@@ -12,8 +12,8 @@ const headers = {
 // Async type function is the only way to use the await key word - if you are RESOLVING a response with .then don't need 'async' keyword. 
 export const fetchStandings = async (leagueId = 39, season = 2025) => {
   const res = await fetch(
-    `http://localhost:4000/api/saved-standings?league=${leagueId}&season=${season}`
-  );
+  `http://localhost:4000/api/standings-db?league=${leagueId}&season=${season}`
+);
   return res.json();
 };
 

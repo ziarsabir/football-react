@@ -7,7 +7,7 @@ const StandingsTable = () => {
 
   useEffect(() => {
     fetchStandings().then((data) => {
-      const table = data.items || [];
+      const table = Array.isArray(data) ? data : data.items || []; 
       setStandings(table);
     });
   }, []);
