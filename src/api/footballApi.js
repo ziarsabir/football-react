@@ -71,10 +71,12 @@ export const fetchFixturesByLeague = async (leagueId = 39, season = 2025) => {
     return res.json(); 
   }; 
 
-export const fetchFixturesByTeam = async (teamId = 40, season = 2025) => {
-    const res = await fetch(`${BASE_URL}/fixtures?team=${teamId}&season=${season}`, { headers });
-    return res.json(); 
-}; 
+export const fetchFixturesByTeam = async (teamId, season = 2025) => {
+  const res = await fetch(
+    `http://localhost:4000/api/team-fixtures-db/${teamId}?season=${season}`
+  );
+  return res.json();
+};
 
 // get("https://v3.football.api-sports.io/fixtures?team=85&season=2019&from=2019-07-01&to=2020-10-31");
 
