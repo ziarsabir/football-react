@@ -9,13 +9,16 @@ export default function Teams() {
   const [q, setQ] = useState("");
 
   useEffect(() => {
-    fetchTeamsByLeague(39, 2025).then((data) => setTeams(data.response || []));
+    fetchTeamsByLeague(39, 2025).then((data) => setTeams(data.items || []));
   }, []);
 
   const filtered = useMemo(() => {
-    if (!q.trim()) return teams;
-    return teams.filter((t) =>
-      t.team.name.toLowerCase().includes(q.toLowerCase())
+    const searchTerm = q.trim().toLowerCase(); 
+
+    if (!searchTerm) return teams; 
+
+    return teams.filter((t) => 
+      t.teamName.toLowerCase().includes(searchTerm)
     );
   }, [q, teams]);
 
@@ -39,17 +42,17 @@ export default function Teams() {
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((t) => (
             <Link
-              to={`/teams/${t.team.id}`}
-              key={t.team.id}
+              to={`/teams/${t.teamId}`}
+              key={t.teamId}
               className="bg-white shadow-md rounded-xl p-5 hover:shadow-xl hover:-translate-y-0.5 transition text-center"
             >
               <img
-                src={t.team.logo}
-                alt={t.team.name}
+                src={t.teamLogo}
+                alt={t.teamName}
                 className="w-16 h-16 mx-auto mb-3"
               />
-              <p className="font-semibold text-slate-800">{t.team.name}</p>
-              <p className="text-xs text-slate-500 mt-1">{t.team.country}</p>
+              <p className="font-semibold text-slate-800">{t.teamName}</p>
+              <p className="text-xs text-slate-500 mt-1">{t.country}</p>
             </Link>
           ))}
         </div>

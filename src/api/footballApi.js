@@ -29,8 +29,8 @@ return res.json();
 }
 
 export const fetchTeamDetails = async (teamId = 34) => {
-const res = await fetch(`${BASE_URL}/teams?id=${teamId}`, { headers });
-return res.json();
+  const res = await fetch(`http://localhost:4000/api/teams-db/${teamId}`);
+  return res.json();
 };
 
 //get all the premier Leaugue teams
@@ -39,7 +39,6 @@ export const fetchPremierLeagueTeams = async (season = 2025,leagueId = 39, ) => 
     const res = await fetch(`${BASE_URL}/teams?league=${leagueId}&season=${season}`, { headers });
     return res.json();
     };
-
 
 
 export const fetchTeamStats = async (teamId = 34, leagueId = 39, season = 2025) => {
@@ -54,9 +53,11 @@ export const fetchPlayerTransfers = async (playerId = 35845) => {
 };
 
 export const fetchTeamsByLeague = async (leagueId = 39, season = 2025) => {
-    const res = await fetch(`${BASE_URL}/teams?league=${leagueId}&season=${season}`, { headers });
-    return res.json();
-  }; 
+  const res = await fetch(
+    `http://localhost:4000/api/teams-db?league=${leagueId}&season=${season}`
+  );
+  return res.json();
+};
 
   // Get all transfers from one {team}
 export const fetchTransfersByTeam = async (teamId = 34) => {
