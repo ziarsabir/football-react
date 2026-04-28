@@ -60,10 +60,12 @@ export const fetchTeamsByLeague = async (leagueId = 39, season = 2025) => {
 };
 
   // Get all transfers from one {team}
-export const fetchTransfersByTeam = async (teamId = 34) => {
-    const res = await fetch(`${BASE_URL}/transfers?team=${teamId}`, { headers }); 
-    return res.json(); 
-}
+export const fetchTransfersByTeam = async (teamId) => {
+  const res = await fetch(
+    `http://localhost:4000/api/team-transfers-db/${teamId}`
+  );
+  return res.json();
+};
 
 
 export const fetchFixturesByLeague = async (leagueId = 39, season = 2025) => {

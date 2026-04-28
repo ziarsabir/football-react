@@ -16,17 +16,12 @@ export default function TeamDetails() {
   });
 
   fetchTransfersByTeam(teamId).then((data) => {
-    setTransfer(data.response || null);
+    setTransfer(data.items || []);;
   });
 }, [teamId]);
 
-  // Safely compute filtered transfers once we have both pieces
-  const summerTransfers = filterSummerTransfersForTeam(transfer, {
-    teamName: team?.team?.name ?? "",
-    start: "2025-06-16",
-    end: "2026-01-25",
-  });
-
+  const summerTransfers = transfer || [];
+  
   if (!team) {
     return <p className="text-center text-slate-500 mt-10">Loading team details...</p>;
   }
