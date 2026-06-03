@@ -48,7 +48,7 @@ export default function SportsNews() {
     let cancelled = false;
     (async () => {
       setLoading(true);
-      setError("");
+      setError(""); 
       try {
         const topicQS = plOnly ? "&topic=premierleague" : "";
         const clubQS =

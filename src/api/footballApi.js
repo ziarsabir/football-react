@@ -1,12 +1,3 @@
-const API_KEY = '31cac3d5105c65b67d9a3a31bd4e8b57';
-const BASE_URL = "https://v3.football.api-sports.io";
-
-// These are like addresses on an envelope 
-const headers = {
-"X-RapidAPI-Key": API_KEY,
-"X-RapidAPI-Host": "v3.football.api-sports.io"
-};
-
 // Fetch is returning as a response a promise. 
 // .then is way of dealing with the response but await is a much cleaner way of doing so. 
 // Async type function is the only way to use the await key word - if you are RESOLVING a response with .then don't need 'async' keyword. 
@@ -30,6 +21,11 @@ return res.json();
 
 export const fetchTeamDetails = async (teamId = 34) => {
   const res = await fetch(`http://localhost:4000/api/teams-db/${teamId}`);
+  return res.json();
+};
+
+export const fetchSquadByTeam = async (teamId) => {
+  const res = await fetch(`http://localhost:4000/api/squad-db/${teamId}`);
   return res.json();
 };
 
