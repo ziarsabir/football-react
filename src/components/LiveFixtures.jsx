@@ -8,7 +8,7 @@ const LiveFixtures = () => {
   useEffect(() => {
     fetchPremierLeagueLiveFixtures()
       .then(data => {
-        setFixtures(data?.response || []);
+        setFixtures(data?.items || []);
       })
       .catch(err => {
         console.error("Error fetching live fixtures:", err);

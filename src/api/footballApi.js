@@ -13,11 +13,13 @@ const res = await fetch(`${BASE_URL}/fixtures?live=all`, { headers });
 return res.json();
 };
 
-export const fetchPremierLeagueLiveFixtures = async ( season = 2025, leagueId=39)=>{
-  
-const res = await fetch(`${BASE_URL}/fixtures?live=all&league=${leagueId}&season=${season} `, { headers });
-return res.json();
-}
+export const fetchPremierLeagueLiveFixtures = async (season = 2025, leagueId = 39) => {
+  const res = await fetch(
+    `http://localhost:4000/api/live-fixtures?league=${leagueId}&season=${season}`
+  );
+
+  return res.json();
+};
 
 export const fetchTeamDetails = async (teamId = 34) => {
   const res = await fetch(`http://localhost:4000/api/teams-db/${teamId}`);
