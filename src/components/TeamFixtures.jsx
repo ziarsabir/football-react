@@ -2,12 +2,17 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchFixturesByTeam } from "../api/footballApi";
+import {
+  fetchFixturesByTeam,
+  fetchGoalEventsByFixture,
+} from "../api/footballApi";
+
 
 const TeamFixtures = () => {
   const { teamId } = useParams();
   const [teamFixtures, setTeamFixtures] = useState([]);
   const [error, setError] = useState("");
+  const [goalEventsByFixture, setGoalEventsByFixture] = useState({});
 
   useEffect(() => {
     let ignore = false;
@@ -43,6 +48,25 @@ const TeamFixtures = () => {
       ignore = true;
     };
   }, [teamId]);
+
+  useEffect(() => {
+    const loadGoalEvents = async () => {
+      const finishedFixtures = teamFixtures.filter(isFinished);
+
+      const eventsMap = {};
+
+      for (const fixture of finishedFixtures) {
+        const data = await fetchGoalEventsByFixture(fixture.fixtureId);
+        eventsMap[fixture.fixtureId] = data.items || [];
+      }
+
+      setGoalEventsByFixture(eventsMap);
+    };
+
+    if (teamFixtures.length > 0) {
+      loadGoalEvents();
+    }
+  }, [teamFixtures]);
 
   const isFinished = (f) => {
     const short = f.statusShort ?? "";
@@ -201,6 +225,33 @@ const TeamFixtures = () => {
                 <div className="text-xs sm:text-sm text-slate-700 text-center mt-1">
                   {dateStr}
                 </div>
+
+                {goalEventsByFixture[id]?.length > 0 && (
+                  <details className="mt-3 text-xs text-slate-600 border-t border-slate-100 pt-2">
+                    <summary className="cursor-pointer font-semibold text-slate-700 text-center">
+                      Scorers ({goalEventsByFixture[id].length})
+                    </summary>
+
+                    <div className="mt-2 space-y-2 text-left">
+                      {goalEventsByFixture[id].map((event) => (
+                        <div key={event.id}>
+                          <span className="font-semibold text-slate-700">
+                            {event.teamName}:
+                          </span>{" "}
+                          ⚽ {event.playerName}
+                          {event.eventTime ? ` ${event.eventTime}'` : ""}
+                          {event.extraTime ? `+${event.extraTime}` : ""}
+
+                          {event.assistName && (
+                            <div className="ml-4 text-[11px] text-slate-500">
+                              Assist: {event.assistName}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                )}
               </>
             ) : (
               <div className="mt-3 text-xs sm:text-sm text-slate-700 text-center">

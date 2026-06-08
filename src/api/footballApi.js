@@ -78,6 +78,14 @@ export const fetchFixturesByTeam = async (teamId, season = 2025) => {
   return res.json();
 };
 
+export const fetchGoalEventsByFixture = async (fixtureId) => {
+  const res = await fetch(
+    `http://localhost:4000/api/fixture-events-db/${fixtureId}`
+  );
+
+  return res.json();
+};
+
 // get("https://v3.football.api-sports.io/fixtures?team=85&season=2019&from=2019-07-01&to=2020-10-31");
 
 // fetch("https://v3.football.api-sports.io/players/topredcards?season=2020&league=61", {
