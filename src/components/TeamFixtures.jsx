@@ -6,7 +6,6 @@ import {
   fetchGoalEventsByFixture,
 } from "../api/footballApi";
 
-
 const TeamFixtures = ({ teamId }) => {
   const [teamFixtures, setTeamFixtures] = useState([]);
   const [error, setError] = useState("");
@@ -46,25 +45,6 @@ const TeamFixtures = ({ teamId }) => {
       ignore = true;
     };
   }, [teamId]);
-
-  useEffect(() => {
-    const loadGoalEvents = async () => {
-      const finishedFixtures = teamFixtures.filter(isFinished);
-
-      const eventsMap = {};
-
-      for (const fixture of finishedFixtures) {
-        const data = await fetchGoalEventsByFixture(fixture.fixtureId);
-        eventsMap[fixture.fixtureId] = data.items || [];
-      }
-
-      setGoalEventsByFixture(eventsMap);
-    };
-
-    if (teamFixtures.length > 0) {
-      loadGoalEvents();
-    }
-  }, [teamFixtures]);
 
   const isFinished = (f) => {
     const short = f.statusShort ?? "";
@@ -115,6 +95,13 @@ const TeamFixtures = ({ teamId }) => {
     return "bg-slate-100 text-slate-700";
   };
 
+  const formBadgeClass = (result) => {
+    if (result === "W") return "bg-emerald-100 text-emerald-700 border-emerald-200";
+    if (result === "D") return "bg-amber-100 text-amber-700 border-amber-200";
+    if (result === "L") return "bg-red-100 text-red-700 border-red-200";
+    return "bg-slate-100 text-slate-700 border-slate-200";
+  };
+
   const fmtDateTime = (iso) => {
     if (!iso) return "TBD";
     const t = new Date(iso);
@@ -131,6 +118,18 @@ const TeamFixtures = ({ teamId }) => {
     });
   }, [teamFixtures]);
 
+  const lastFiveForm = useMemo(() => {
+    return results
+      .slice(0, 5)
+      .map((fixture) => ({
+        fixtureId: fixture.fixtureId,
+        result: getResult(fixture),
+        opponent: getOpponent(fixture),
+        homeAway: getHomeAwayLabel(fixture),
+        score: `${fixture.goalsHome ?? 0} - ${fixture.goalsAway ?? 0}`,
+      }));
+  }, [results, teamId]);
+
   const upcoming = useMemo(() => {
     const arr = teamFixtures.filter(isUpcoming);
 
@@ -145,6 +144,25 @@ const TeamFixtures = ({ teamId }) => {
     () => (upcoming.length ? upcoming[0]?.fixtureId ?? null : null),
     [upcoming]
   );
+
+  useEffect(() => {
+    const loadGoalEvents = async () => {
+      const finishedFixtures = teamFixtures.filter(isFinished);
+
+      const eventsMap = {};
+
+      for (const fixture of finishedFixtures) {
+        const data = await fetchGoalEventsByFixture(fixture.fixtureId);
+        eventsMap[fixture.fixtureId] = data.items || [];
+      }
+
+      setGoalEventsByFixture(eventsMap);
+    };
+
+    if (teamFixtures.length > 0) {
+      loadGoalEvents();
+    }
+  }, [teamFixtures]);
 
   const cardClass = (f) => {
     if (isFinished(f)) return "bg-white border border-slate-200";
@@ -292,6 +310,26 @@ const TeamFixtures = ({ teamId }) => {
           @ = Away
         </span>
       </div>
+
+      {lastFiveForm.length > 0 && (
+        <section className="mb-8 text-center">
+          <h4 className="h2 mb-4">Recent Form</h4>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {lastFiveForm.map((item) => (
+              <div
+                key={item.fixtureId}
+                className={`w-11 h-11 rounded-full border flex items-center justify-center font-bold shadow-sm ${formBadgeClass(
+                  item.result
+                )}`}
+                title={`${item.homeAway} vs ${item.opponent} · ${item.score}`}
+              >
+                {item.result}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {upcoming.length > 0 && (
         <section className="mb-8">
