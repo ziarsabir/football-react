@@ -8,11 +8,6 @@ export const fetchStandings = async (leagueId = 39, season = 2025) => {
   return res.json();
 };
 
-export const fetchLiveFixtures = async () => {
-const res = await fetch(`${BASE_URL}/fixtures?live=all`, { headers });
-return res.json();
-};
-
 export const fetchPremierLeagueLiveFixtures = async (season = 2025, leagueId = 39) => {
   const res = await fetch(
     `http://localhost:4000/api/live-fixtures?league=${leagueId}&season=${season}`
@@ -31,25 +26,6 @@ export const fetchSquadByTeam = async (teamId) => {
   return res.json();
 };
 
-//get all the premier Leaugue teams
-
-export const fetchPremierLeagueTeams = async (season = 2025,leagueId = 39, ) => {
-    const res = await fetch(`${BASE_URL}/teams?league=${leagueId}&season=${season}`, { headers });
-    return res.json();
-    };
-
-
-export const fetchTeamStats = async (teamId = 34, leagueId = 39, season = 2025) => {
-    const res = await fetch(`${BASE_URL}/teams/statistics?team=${teamId}&league=${leagueId}&season=${season}`, { headers });
-    return res.json();
-    };
-
-// New function to fetch player transfers
-export const fetchPlayerTransfers = async (playerId = 35845) => {
-    const res = await fetch(`${BASE_URL}/transfers?player=${playerId}`, {headers});
-    return res.json();
-};
-
 export const fetchTeamsByLeague = async (leagueId = 39, season = 2025) => {
   const res = await fetch(
     `http://localhost:4000/api/teams-db?league=${leagueId}&season=${season}`
@@ -66,15 +42,18 @@ export const fetchTransfersByTeam = async (teamId) => {
 };
 
 
-export const fetchFixturesByLeague = async (leagueId = 39, season = 2025) => {
-    const res = await fetch(`${BASE_URL}/fixtures?league=${leagueId}&season=${season}`, { headers });
-    return res.json(); 
-  }; 
-
 export const fetchFixturesByTeam = async (teamId, season = 2025) => {
   const res = await fetch(
     `http://localhost:4000/api/team-fixtures-db/${teamId}?season=${season}`
   );
+  return res.json();
+};
+
+export const fetchTeamLeaders = async (teamId) => {
+  const res = await fetch(
+    `http://localhost:4000/api/player-stats/${teamId}`
+  );
+
   return res.json();
 };
 
@@ -85,6 +64,8 @@ export const fetchGoalEventsByFixture = async (fixtureId) => {
 
   return res.json();
 };
+
+
 
 // get("https://v3.football.api-sports.io/fixtures?team=85&season=2019&from=2019-07-01&to=2020-10-31");
 

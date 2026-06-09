@@ -1,15 +1,13 @@
 // TeamFixtures.jsx
 
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
 import {
   fetchFixturesByTeam,
   fetchGoalEventsByFixture,
 } from "../api/footballApi";
 
 
-const TeamFixtures = () => {
-  const { teamId } = useParams();
+const TeamFixtures = ({ teamId }) => {
   const [teamFixtures, setTeamFixtures] = useState([]);
   const [error, setError] = useState("");
   const [goalEventsByFixture, setGoalEventsByFixture] = useState({});

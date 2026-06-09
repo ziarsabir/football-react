@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchTeamDetails, fetchTransfersByTeam } from "../api/footballApi";
-import TeamFixtures from "./TeamFixtures";
+import TeamFixtures from "./TeamFixtures.jsx";
 import TeamTransfers from "./TeamTransfers.jsx";
 import TeamSquad from "./TeamSquad.jsx";
+import TeamLeaders from "./TeamLeaders.jsx"; 
 
 export default function TeamDetails() {
   const { teamId } = useParams();
@@ -49,8 +50,11 @@ export default function TeamDetails() {
         </div>
       </div>
 
+      {/* Team Leaders */}
+      <TeamLeaders teamId={teamId} /> 
+
       {/* Fixtures for this team */}
-      <TeamFixtures />
+      <TeamFixtures teamId={teamId} />
 
       <TeamSquad teamId={teamId} />
       
