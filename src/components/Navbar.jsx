@@ -17,7 +17,7 @@ export default function NavBar() {
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-black via-orange-900 to-black text-white shadow">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-1">
           {/* Logo */}
           <Link
             to="/"
@@ -27,7 +27,7 @@ export default function NavBar() {
             <img
               src={logo}
               alt="Premier League Stats"
-              className="h-[90px] w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-[100px]"
+              className="h-[105px] w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-[100px]"
             />
           </Link>
 
