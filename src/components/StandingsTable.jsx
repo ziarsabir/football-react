@@ -49,42 +49,43 @@ const StandingsTable = () => {
   };
 
   return (
-    <div className="w-full overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
-      <table className="w-full min-w-[560px] border-collapse">
+    <div className="w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+      <table className="w-full table-fixed border-collapse">
         <thead className="bg-slate-800 text-white">
           <tr>
-            <th className="w-12 px-3 py-3 text-left">#</th>
+            <th className="w-10 px-2 py-3 text-left">#</th>
 
-            <th className="min-w-[180px] px-3 py-3 text-left">
+            <th className="px-2 py-3 text-left">
               Team
             </th>
 
-            <th className="px-2 py-3 text-right">P</th>
-            <th className="px-2 py-3 text-right">W</th>
+            <th className="w-12 px-1 py-3 text-right">P</th>
 
-            <th className="hidden px-2 py-3 text-right sm:table-cell">
+            <th className="w-12 px-1 py-3 text-right">W</th>
+
+            <th className="hidden w-12 px-1 py-3 text-right sm:table-cell">
               D
             </th>
 
-            <th className="hidden px-2 py-3 text-right sm:table-cell">
+            <th className="hidden w-12 px-1 py-3 text-right sm:table-cell">
               L
             </th>
 
-            <th className="hidden px-2 py-3 text-right md:table-cell">
+            <th className="hidden w-12 px-1 py-3 text-right md:table-cell">
               GF
             </th>
 
-            <th className="hidden px-2 py-3 text-right md:table-cell">
+            <th className="hidden w-12 px-1 py-3 text-right md:table-cell">
               GA
             </th>
 
-            <th className="hidden px-2 py-3 text-right lg:table-cell">
+            <th className="hidden w-12 px-1 py-3 text-right lg:table-cell">
               GD
             </th>
 
-            <th className="px-3 py-3 text-right">Pts</th>
+            <th className="w-14 px-2 py-3 text-right">Pts</th>
 
-            <th className="hidden px-3 py-3 text-right lg:table-cell">
+            <th className="hidden w-24 px-3 py-3 text-right lg:table-cell">
               Form
             </th>
           </tr>
@@ -110,56 +111,56 @@ const StandingsTable = () => {
                     : "bg-slate-50/70"
                 }
               >
-                <td className="px-3 py-3 tabular-nums">
+                <td className="px-2 py-3 tabular-nums">
                   {row.rank}
                 </td>
 
-                <td className="px-3 py-3">
+                <td className="px-2 py-3">
                   <Link
                     to={`/teams/${row.teamId}`}
-                    className="flex min-w-0 items-center gap-3 hover:underline"
+                    className="flex min-w-0 items-center gap-2 hover:underline"
                   >
                     <img
                       src={row.teamLogo}
                       alt={`${row.teamName} logo`}
-                      className="h-7 w-7 shrink-0 object-contain"
+                      className="h-6 w-6 shrink-0 object-contain sm:h-7 sm:w-7"
                     />
 
-                    <span className="min-w-0 font-medium text-slate-800">
+                    <span className="min-w-0 truncate font-medium text-slate-800">
                       {row.teamName}
                     </span>
                   </Link>
                 </td>
 
-                <td className="px-2 py-3 text-right tabular-nums">
+                <td className="px-1 py-3 text-right tabular-nums">
                   {played}
                 </td>
 
-                <td className="px-2 py-3 text-right tabular-nums">
+                <td className="px-1 py-3 text-right tabular-nums">
                   {win}
                 </td>
 
-                <td className="hidden px-2 py-3 text-right tabular-nums sm:table-cell">
+                <td className="hidden px-1 py-3 text-right tabular-nums sm:table-cell">
                   {draw}
                 </td>
 
-                <td className="hidden px-2 py-3 text-right tabular-nums sm:table-cell">
+                <td className="hidden px-1 py-3 text-right tabular-nums sm:table-cell">
                   {lose}
                 </td>
 
-                <td className="hidden px-2 py-3 text-right tabular-nums md:table-cell">
+                <td className="hidden px-1 py-3 text-right tabular-nums md:table-cell">
                   {goalsFor}
                 </td>
 
-                <td className="hidden px-2 py-3 text-right tabular-nums md:table-cell">
+                <td className="hidden px-1 py-3 text-right tabular-nums md:table-cell">
                   {goalsAgainst}
                 </td>
 
-                <td className="hidden px-2 py-3 text-right font-medium tabular-nums lg:table-cell">
+                <td className="hidden px-1 py-3 text-right font-medium tabular-nums lg:table-cell">
                   {goalDifference}
                 </td>
 
-                <td className="px-3 py-3 text-right font-semibold tabular-nums">
+                <td className="px-2 py-3 text-right font-semibold tabular-nums">
                   {row.points}
                 </td>
 
