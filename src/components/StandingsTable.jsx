@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchStandings } from "../api/footballApi";
 import { Link } from "react-router-dom";
+import { fetchStandings } from "../api/footballApi";
 
 const StandingsTable = () => {
   const [standings, setStandings] = useState([]);
@@ -53,15 +53,21 @@ const StandingsTable = () => {
       <table className="w-full table-fixed border-collapse">
         <thead className="bg-slate-800 text-white">
           <tr>
-            <th className="w-10 px-2 py-3 text-left">#</th>
+            <th className="w-9 px-1.5 py-3 text-left sm:w-12 sm:px-3">
+              #
+            </th>
 
-            <th className="px-2 py-3 text-left">
+            <th className="px-1.5 py-3 text-left sm:px-3">
               Team
             </th>
 
-            <th className="w-12 px-1 py-3 text-right">P</th>
+            <th className="w-10 px-1 py-3 text-right sm:w-12 sm:px-2">
+              P
+            </th>
 
-            <th className="w-12 px-1 py-3 text-right">W</th>
+            <th className="w-10 px-1 py-3 text-right sm:w-12 sm:px-2">
+              W
+            </th>
 
             <th className="hidden w-12 px-1 py-3 text-right sm:table-cell">
               D
@@ -83,7 +89,9 @@ const StandingsTable = () => {
               GD
             </th>
 
-            <th className="w-14 px-2 py-3 text-right">Pts</th>
+            <th className="w-12 px-1.5 py-3 text-right sm:w-14 sm:px-2">
+              Pts
+            </th>
 
             <th className="hidden w-24 px-3 py-3 text-right lg:table-cell">
               Form
@@ -111,32 +119,32 @@ const StandingsTable = () => {
                     : "bg-slate-50/70"
                 }
               >
-                <td className="px-2 py-3 tabular-nums">
+                <td className="px-1.5 py-3 tabular-nums sm:px-3">
                   {row.rank}
                 </td>
 
-                <td className="px-2 py-3">
+                <td className="px-1.5 py-3 sm:px-3">
                   <Link
                     to={`/teams/${row.teamId}`}
-                    className="flex min-w-0 items-center gap-2 hover:underline"
+                    className="flex min-w-0 items-center gap-1.5 hover:underline sm:gap-3"
                   >
                     <img
                       src={row.teamLogo}
                       alt={`${row.teamName} logo`}
-                      className="h-6 w-6 shrink-0 object-contain sm:h-7 sm:w-7"
+                      className="h-5 w-5 shrink-0 object-contain sm:h-7 sm:w-7"
                     />
 
-                    <span className="min-w-0 truncate font-medium text-slate-800">
+                    <span className="min-w-0 text-sm font-medium leading-tight text-slate-800 sm:text-base">
                       {row.teamName}
                     </span>
                   </Link>
                 </td>
 
-                <td className="px-1 py-3 text-right tabular-nums">
+                <td className="px-1 py-3 text-right tabular-nums sm:px-2">
                   {played}
                 </td>
 
-                <td className="px-1 py-3 text-right tabular-nums">
+                <td className="px-1 py-3 text-right tabular-nums sm:px-2">
                   {win}
                 </td>
 
@@ -160,7 +168,7 @@ const StandingsTable = () => {
                   {goalDifference}
                 </td>
 
-                <td className="px-2 py-3 text-right font-semibold tabular-nums">
+                <td className="px-1.5 py-3 text-right font-semibold tabular-nums sm:px-2">
                   {row.points}
                 </td>
 
