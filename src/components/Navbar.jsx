@@ -27,7 +27,7 @@ export default function NavBar() {
             <img
               src={logo}
               alt="Premier League Stats"
-              className="h-[105px] w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-[100px]"
+              className="h-[115px] w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-[100px]"
             />
           </Link>
 
