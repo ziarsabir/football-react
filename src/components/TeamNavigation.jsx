@@ -9,7 +9,7 @@ export default function TeamNavigation() {
   function scrollToSection(id) {
     const offset = 140;
 
-    function performScroll() {
+    setTimeout(() => {
       const element = document.getElementById(id);
 
       if (!element) return;
@@ -23,13 +23,7 @@ export default function TeamNavigation() {
         top,
         behavior: "smooth",
       });
-    }
-
-    // Scroll immediately
-    performScroll();
-
-    // Correct the position after the sections above finish loading
-    setTimeout(performScroll, 600);
+    }, 300);
   }
 
   return (
