@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchTeamDetails, fetchTransfersByTeam } from "../api/footballApi";
+import {
+  fetchTeamDetails,
+  fetchTransfersByTeam,
+} from "../api/footballApi";
 import TeamFixtures from "./TeamFixtures.jsx";
 import TeamTransfers from "./TeamTransfers.jsx";
 import TeamSquad from "./TeamSquad.jsx";
@@ -42,9 +45,7 @@ export default function TeamDetails() {
           className="w-24 h-24 mx-auto mb-4"
         />
 
-        <h2 className="text-3xl font-bold">
-          {team.teamName}
-        </h2>
+        <h2 className="text-3xl font-bold">{team.teamName}</h2>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
           <div className="bg-slate-50 rounded-lg p-3">
@@ -52,9 +53,7 @@ export default function TeamDetails() {
               Country
             </div>
 
-            <div className="font-medium">
-              {team.country}
-            </div>
+            <div className="font-medium">{team.country}</div>
           </div>
 
           <div className="bg-slate-50 rounded-lg p-3">
@@ -62,9 +61,7 @@ export default function TeamDetails() {
               Founded
             </div>
 
-            <div className="font-medium">
-              {team.founded}
-            </div>
+            <div className="font-medium">{team.founded}</div>
           </div>
 
           <div className="bg-slate-50 rounded-lg p-3 sm:col-span-2">
@@ -81,22 +78,20 @@ export default function TeamDetails() {
 
       <TeamNavigation />
 
-      <div id="leaders" className="scroll-mt-24">
+      <div id="leaders">
         <TeamLeaders teamId={teamId} />
       </div>
 
-      <div id="fixtures" className="scroll-mt-24">
+      <div id="fixtures">
         <TeamFixtures teamId={teamId} />
       </div>
 
-      <div id="squad" className="scroll-mt-24">
+      <div id="squad">
         <TeamSquad teamId={teamId} />
       </div>
 
-      <div id="transfers" className="scroll-mt-24 mt-10">
-        <h3 className="h2 mb-4">
-          Transfers
-        </h3>
+      <div id="transfers" className="mt-10">
+        <h3 className="h2 mb-4">Transfers</h3>
 
         <TeamTransfers summerTransfers={summerTransfers} />
       </div>

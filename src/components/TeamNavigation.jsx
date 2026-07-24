@@ -19,11 +19,21 @@ export default function TeamNavigation() {
   ];
 
   function scrollToSection(id) {
-    document
-      .getElementById(id)
-      ?.scrollIntoView({
-        behavior: "smooth",
-      });
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
+    const offset = 40;
+
+    const top =
+      element.getBoundingClientRect().top +
+      window.pageYOffset -
+      offset;
+
+    window.scrollTo({
+      top,
+      behavior: "smooth",
+    });
   }
 
   return (
