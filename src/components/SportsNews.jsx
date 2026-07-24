@@ -27,7 +27,7 @@ const PL_CLUBS = [
   "Manchester United",
   "Newcastle United",
   "Nottingham Forest",
-  "Southampton",
+  "Sunderland",
   "Tottenham Hotspur",
   "West Ham United",
   "Wolves"
