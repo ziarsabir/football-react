@@ -4,45 +4,74 @@ import { fetchTeamDetails, fetchTransfersByTeam } from "../api/footballApi";
 import TeamFixtures from "./TeamFixtures.jsx";
 import TeamTransfers from "./TeamTransfers.jsx";
 import TeamSquad from "./TeamSquad.jsx";
-import TeamLeaders from "./TeamLeaders.jsx"; 
+import TeamLeaders from "./TeamLeaders.jsx";
+import TeamNavigation from "./TeamNavigation.jsx";
 
 export default function TeamDetails() {
   const { teamId } = useParams();
+
   const [team, setTeam] = useState(null);
   const [transfer, setTransfer] = useState(null);
 
   useEffect(() => {
-  fetchTeamDetails(teamId).then((data) => {
-    setTeam(data || null);
-  });
+    fetchTeamDetails(teamId).then((data) => {
+      setTeam(data || null);
+    });
 
-  fetchTransfersByTeam(teamId).then((data) => {
-    setTransfer(data.items || []);;
-  });
-}, [teamId]);
+    fetchTransfersByTeam(teamId).then((data) => {
+      setTransfer(data.items || []);
+    });
+  }, [teamId]);
 
   const summerTransfers = transfer || [];
-  
+
   if (!team) {
-    return <p className="text-center text-slate-500 mt-10">Loading team details...</p>;
+    return (
+      <p className="text-center text-slate-500 mt-10">
+        Loading team details...
+      </p>
+    );
   }
 
   return (
     <div className="container mx-auto px-4 my-10">
       <div className="max-w-xl mx-auto bg-white shadow-xl rounded-2xl p-8 text-center">
-        <img src={team.teamLogo} alt={team.teamName} className="w-24 h-24 mx-auto mb-4" />
-        <h2 className="text-3xl font-bold">{team.teamName}</h2>
+        <img
+          src={team.teamLogo}
+          alt={team.teamName}
+          className="w-24 h-24 mx-auto mb-4"
+        />
+
+        <h2 className="text-3xl font-bold">
+          {team.teamName}
+        </h2>
+
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
           <div className="bg-slate-50 rounded-lg p-3">
-            <div className="text-xs uppercase text-slate-500">Country</div>
-            <div className="font-medium">{team.country}</div>
+            <div className="text-xs uppercase text-slate-500">
+              Country
+            </div>
+
+            <div className="font-medium">
+              {team.country}
+            </div>
           </div>
+
           <div className="bg-slate-50 rounded-lg p-3">
-            <div className="text-xs uppercase text-slate-500">Founded</div>
-            <div className="font-medium">{team.founded}</div>
+            <div className="text-xs uppercase text-slate-500">
+              Founded
+            </div>
+
+            <div className="font-medium">
+              {team.founded}
+            </div>
           </div>
+
           <div className="bg-slate-50 rounded-lg p-3 sm:col-span-2">
-            <div className="text-xs uppercase text-slate-500">Venue</div>
+            <div className="text-xs uppercase text-slate-500">
+              Venue
+            </div>
+
             <div className="font-medium">
               {team.venueName}, {team.venueCity}
             </div>
@@ -50,17 +79,25 @@ export default function TeamDetails() {
         </div>
       </div>
 
-      {/* Team Leaders */}
-      <TeamLeaders teamId={teamId} /> 
+      <TeamNavigation />
 
-      {/* Fixtures for this team */}
-      <TeamFixtures teamId={teamId} />
+      <div id="leaders" className="scroll-mt-24">
+        <TeamLeaders teamId={teamId} />
+      </div>
 
-      <TeamSquad teamId={teamId} />
-      
-     {/* Transfers */}
-      <div className="mt-10">
-        <h3 className="h2 mb-4">Transfers</h3>
+      <div id="fixtures" className="scroll-mt-24">
+        <TeamFixtures teamId={teamId} />
+      </div>
+
+      <div id="squad" className="scroll-mt-24">
+        <TeamSquad teamId={teamId} />
+      </div>
+
+      <div id="transfers" className="scroll-mt-24 mt-10">
+        <h3 className="h2 mb-4">
+          Transfers
+        </h3>
+
         <TeamTransfers summerTransfers={summerTransfers} />
       </div>
     </div>
