@@ -23,7 +23,7 @@ export default function TeamNavigation() {
 
     if (!element) return;
 
-    const offset = 40;
+    const offset = 140;
 
     const top =
       element.getBoundingClientRect().top +
