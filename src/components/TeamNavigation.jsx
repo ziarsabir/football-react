@@ -7,44 +7,46 @@ export default function TeamNavigation() {
   ];
 
   function scrollToSection(id) {
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
     const offset = 140;
+    const startPosition = window.scrollY;
+    const duration = 700;
+    const startTime = performance.now();
 
-    let previousHeight = document.documentElement.scrollHeight;
-    let stableChecks = 0;
-    let checks = 0;
+    function animateScroll(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
 
-    const checkPageHeight = setInterval(() => {
-      const currentHeight = document.documentElement.scrollHeight;
+      // Smooth ease-in/ease-out movement
+      const easedProgress =
+        progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
 
-      if (currentHeight === previousHeight) {
-        stableChecks += 1;
-      } else {
-        stableChecks = 0;
-        previousHeight = currentHeight;
+      // Recalculate the target position during every frame
+      const targetPosition =
+        element.getBoundingClientRect().top +
+        window.scrollY -
+        offset;
+
+      const newPosition =
+        startPosition +
+        (targetPosition - startPosition) * easedProgress;
+
+      window.scrollTo({
+        top: newPosition,
+        behavior: "auto",
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
       }
+    }
 
-      checks += 1;
-
-      // Scroll once the page has settled,
-      // or after roughly two seconds at most.
-      if (stableChecks >= 3 || checks >= 20) {
-        clearInterval(checkPageHeight);
-
-        const element = document.getElementById(id);
-
-        if (!element) return;
-
-        const top =
-          element.getBoundingClientRect().top +
-          window.scrollY -
-          offset;
-
-        window.scrollTo({
-          top,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
+    requestAnimationFrame(animateScroll);
   }
 
   return (
