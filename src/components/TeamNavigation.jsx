@@ -9,21 +9,42 @@ export default function TeamNavigation() {
   function scrollToSection(id) {
     const offset = 140;
 
-    setTimeout(() => {
-      const element = document.getElementById(id);
+    let previousHeight = document.documentElement.scrollHeight;
+    let stableChecks = 0;
+    let checks = 0;
 
-      if (!element) return;
+    const checkPageHeight = setInterval(() => {
+      const currentHeight = document.documentElement.scrollHeight;
 
-      const top =
-        element.getBoundingClientRect().top +
-        window.scrollY -
-        offset;
+      if (currentHeight === previousHeight) {
+        stableChecks += 1;
+      } else {
+        stableChecks = 0;
+        previousHeight = currentHeight;
+      }
 
-      window.scrollTo({
-        top,
-        behavior: "smooth",
-      });
-    }, 300);
+      checks += 1;
+
+      // Scroll once the page has settled,
+      // or after roughly two seconds at most.
+      if (stableChecks >= 3 || checks >= 20) {
+        clearInterval(checkPageHeight);
+
+        const element = document.getElementById(id);
+
+        if (!element) return;
+
+        const top =
+          element.getBoundingClientRect().top +
+          window.scrollY -
+          offset;
+
+        window.scrollTo({
+          top,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
   }
 
   return (
