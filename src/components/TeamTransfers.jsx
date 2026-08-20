@@ -2,6 +2,8 @@
 import React from "react";
 
 export default function TeamTransfers({ summerTransfers = [] }) {
+  console.log("SUMMER TRANSFERS:", summerTransfers);
+
   const start = new Date("2026-06-01").getTime();
   const end = new Date("2026-09-01").getTime();
 
