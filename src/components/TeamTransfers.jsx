@@ -2,8 +2,8 @@
 import React from "react";
 
 export default function TeamTransfers({ summerTransfers = [] }) {
-  const start = new Date("2025-06-16").getTime();
-  const end = new Date("2026-01-25").getTime();
+  const start = new Date("2026-06-01").getTime();
+  const end = new Date("2026-09-01").getTime();
 
   const filteredTransfers = summerTransfers.filter((t) => {
     const time = new Date(t.transferDate).getTime();
