@@ -9,7 +9,7 @@ export default function Teams() {
   const [q, setQ] = useState("");
 
   useEffect(() => {
-    fetchTeamsByLeague(39, 2025).then((data) => setTeams(data.items || []));
+    fetchTeamsByLeague(39, 2026).then((data) => setTeams(data.items || []));
   }, []);
 
   const filtered = useMemo(() => {
