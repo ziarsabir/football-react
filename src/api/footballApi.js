@@ -5,7 +5,7 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 // Get standings
-export const fetchStandings = async (leagueId = 39, season = 2025) => {
+export const fetchStandings = async (leagueId = 39, season = 2026) => {
   const res = await fetch(
     `${API_BASE_URL}/api/standings-db?league=${leagueId}&season=${season}`
   );
@@ -15,7 +15,7 @@ export const fetchStandings = async (leagueId = 39, season = 2025) => {
 
 // Get live Premier League fixtures
 export const fetchPremierLeagueLiveFixtures = async (
-  season = 2025,
+  season = 2026,
   leagueId = 39
 ) => {
   const res = await fetch(
@@ -46,7 +46,7 @@ export const fetchSquadByTeam = async (teamId) => {
 // Get all teams in a league
 export const fetchTeamsByLeague = async (
   leagueId = 39,
-  season = 2025
+  season = 2026
 ) => {
   const res = await fetch(
     `${API_BASE_URL}/api/teams-db?league=${leagueId}&season=${season}`
@@ -67,7 +67,7 @@ export const fetchTransfersByTeam = async (teamId) => {
 // Get fixtures for one team
 export const fetchFixturesByTeam = async (
   teamId,
-  season = 2025
+  season = 2026
 ) => {
   const res = await fetch(
     `${API_BASE_URL}/api/team-fixtures-db/${teamId}?season=${season}`
