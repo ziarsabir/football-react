@@ -16,21 +16,20 @@ const PL_CLUBS = [
   "Brentford",
   "Brighton",
   "Chelsea",
+  "Coventry",
   "Crystal Palace",
   "Everton",
   "Fulham",
+  "Hull City",
   "Ipswich",
   "Leeds United",
-  "Leicester City",
   "Liverpool",
   "Manchester City",
   "Manchester United",
   "Newcastle United",
   "Nottingham Forest",
   "Sunderland",
-  "Tottenham Hotspur",
-  "West Ham United",
-  "Wolves"
+  "Tottenham Hotspur"
 ];
 
 export default function SportsNews() {
